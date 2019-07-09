@@ -8,13 +8,19 @@ var axios = require("axios")
 var fs = require("fs")
 // var to have that moment package
 var moment = require("moment")
+// var to that Spootifoo package
+var Spotify = require("node-spotify-api")
 
 var spotify = new Spotify(keys.spotify);
 
 // FUNCTIONS!
+// Function that gets the artist name: NEED for spotify search
+var getArtistNames = function(artist) {
+    return artist.name;
+  };
 
 // Function for running a Spotify search
-var getMeSpotify = function(songName) {
+var spotifySearch = function(songName) {
     if (songName === undefined) {
       songName = "What's my age again";
     }
@@ -48,21 +54,21 @@ var getMeSpotify = function(songName) {
 
 var userSearch = function(typeOfSearch, whatSearched) {
     switch (typeOfSearch) {
-        case "concert-this":
-        getMyBands(whatSearched);
-        break;
+        // case "concert-this":
+        // getMyBands(whatSearched);
+        // break;
 
         case "spotify-this-song":
-        getMeSpotify(whatSearched)
+        spotifySearch(whatSearched);
         break;
 
-        case "movie-this":
-        getMeMovie(whatSearched);
-        break;
+        // case "movie-this":
+        // getMeMovie(whatSearched);
+        // break;
 
-        case "do-what-it-says":
-        doWhatItSays();
-        break;
+        // case "do-what-it-says":
+        // doWhatItSays();
+        // break;
 
         default: console.log("LIRI is not sure what you mean. Please try a different command.")
 
