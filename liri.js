@@ -15,7 +15,7 @@ var spotify = new Spotify(keys.spotify);
 
 // FUNCTIONS!
 // Function that gets the artist name: NEED for spotify search
-var getArtistNames = function(artist) {
+var grabArtist = function(artist) {
     return artist.name;
   };
 
@@ -40,7 +40,7 @@ var spotifySearch = function(songName) {
   
         for (var i = 0; i < songs.length; i++) {
           console.log(i);
-          console.log("artist(s): " + songs[i].artists.map(getArtistNames));
+          console.log("artist(s): " + songs[i].artists.map(grabArtist));
           console.log("song name: " + songs[i].name);
           console.log("preview song: " + songs[i].preview_url);
           console.log("album: " + songs[i].album.name);
@@ -50,13 +50,48 @@ var spotifySearch = function(songName) {
     );
   };
 
+  var getMyBands = function(artist) {
+    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+  
+    axios.get(queryURL).then(
+      function(response) {
+        var jsonData = response.data;
+  
+        if (!jsonData.length) {
+          console.log("No results found for " + artist);
+          return;
+        }
+  
+        console.log("Upcoming concerts for " + artist + ":");
+  
+        for (var i = 0; i < jsonData.length; i++) {
+          var show = jsonData[i];
+  
+          // Print data about each concert
+          // If a concert doesn't have a region, display the country instead
+          // Use moment to format the date
+          console.log(
+            show.venue.city +
+              "," +
+              (show.venue.region || show.venue.country) +
+              " at " +
+              show.venue.name +
+              " " +
+              moment(show.datetime).format("MM/DD/YYYY")
+          );
+        }
+      }
+    );
+  };
+  
+
 //   Function to figure out what user entered
 
 var userSearch = function(typeOfSearch, whatSearched) {
     switch (typeOfSearch) {
-        // case "concert-this":
-        // getMyBands(whatSearched);
-        // break;
+        case "concert-this":
+        getMyBands(whatSearched);
+        break;
 
         case "spotify-this-song":
         spotifySearch(whatSearched);
