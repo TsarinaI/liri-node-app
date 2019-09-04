@@ -38,9 +38,9 @@ var spotifySearch = function(songName) {
           console.log("Top 10 results");
           console.log("-------------------");
   
-        for (var i = 0; i < 11; i++) {
+        for (var i = 0; i < 10; i++) {
           
-          console.log("Search result #: " + i);
+          console.log("Search result #: " + (i+1));
           console.log("Artist(s): " + songs[i].artists.map(grabArtist));
           console.log("Name of Song: " + songs[i].name);
           console.log("Preview the song: " + songs[i].preview_url);
