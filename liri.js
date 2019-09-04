@@ -20,33 +20,32 @@ var grabArtist = function(artist) {
   };
 
 // Function for running a Spotify search
-var spotifySearch = function(songName) {
-    if (songName === undefined) {
-      songName = "What's my age again";
+var spotifySearch = function(nameOfSong) {
+    if (nameOfSong === undefined) {
+      nameOfSong = "What's my age again";
     }
-  
-    spotify.search(
-      {
-        type: "track",
-        query: songName
-      },
+  // The Spotify API search - if there are results, the first one displays with the artist, name of song, preview, and album
+    spotify.search({type: "track", query: nameOfSong},
       function(err, data) {
         if (err) {
-          console.log("Error occurred: " + err);
+          console.log("Error: " + err);
           return;
         }
+
+        else {
   
         var songs = data.tracks.items;
   
         for (var i = 0; i < songs.length; i++) {
-          console.log(i);
-          console.log("artist(s): " + songs[i].artists.map(grabArtist));
-          console.log("song name: " + songs[i].name);
-          console.log("preview song: " + songs[i].preview_url);
-          console.log("album: " + songs[i].album.name);
-          console.log("-----------------------------------");
+
+          console.log("Search result #: " + i);
+          console.log("Artist(s): " + songs[i].artists.map(grabArtist));
+          console.log("Name of Song: " + songs[i].name);
+          console.log("Preview the song: " + songs[i].preview_url);
+          console.log("Album: " + songs[i].album.name);
+          console.log(".....");
         }
-      }
+      }}
     );
   };
 
