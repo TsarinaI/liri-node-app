@@ -35,10 +35,11 @@ var spotifySearch = function(songName) {
         else {
   
         var songs = data.tracks.items;
-  
-        for (var i = 0; i < songs.length; i++) {
-          console.log("Top 5 results");
+          console.log("Top 10 results");
           console.log("-------------------");
+  
+        for (var i = 0; i < 11; i++) {
+          
           console.log("Search result #: " + i);
           console.log("Artist(s): " + songs[i].artists.map(grabArtist));
           console.log("Name of Song: " + songs[i].name);
