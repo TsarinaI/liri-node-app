@@ -98,9 +98,10 @@ var movieSearch = function(nameOfMovie) {
       console.log("Language: " + response.data.Language);
       console.log("Plot: " + response.data.Plot);
       console.log("Actors: " + response.data.Actors);
+      // Stole this idea from solution
       console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
   });
-}
+};
 
 //   Function to figure out what user entered
 
@@ -114,9 +115,9 @@ var userSearch = function(typeOfSearch, whatSearched) {
         spotifySearch(whatSearched);
         break;
 
-        // case "movie-this":
-        // getMeMovie(whatSearched);
-        // break;
+        case "movie-this":
+        movieSearch(whatSearched);
+        break;
 
         // case "do-what-it-says":
         // doWhatItSays();
