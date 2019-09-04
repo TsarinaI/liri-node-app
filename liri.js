@@ -49,7 +49,8 @@ var spotifySearch = function(nameOfSong) {
     );
   };
 
-  var getMyBands = function(artist) {
+  // Used the solution vid to help with this
+  var bandSearch = function(artist) {
     var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
   
     axios.get(queryURL).then(
@@ -57,21 +58,18 @@ var spotifySearch = function(nameOfSong) {
         var jsonData = response.data;
   
         if (!jsonData.length) {
-          console.log("No results found for " + artist);
+          console.log("No results found for " + artist + ". Please try again.");
           return;
         }
   
-        console.log("Upcoming concerts for " + artist + ":");
+        console.log("Upcoming concerts with " + artist + ":");
   
         for (var i = 0; i < jsonData.length; i++) {
           var show = jsonData[i];
   
-          // Print data about each concert
-          // If a concert doesn't have a region, display the country instead
-          // Use moment to format the date
-          console.log(
-            show.venue.city +
-              "," +
+          // Shows data about concert
+          console.log(show.venue.city + "," +
+          // This makes it display the country if there isn't a region (ES6 logic)
               (show.venue.region || show.venue.country) +
               " at " +
               show.venue.name +
@@ -83,13 +81,19 @@ var spotifySearch = function(nameOfSong) {
     );
   };
   
+var movieSearch = function(nameOfMovie) {
+  if (nameOfMovie === undefined) {
+    nameOfMovie = "Mr Nobody";
+  }
+  var queryMovie = "http://www.omdbapi.com/?t=" + nameOfMovie + "&y=&plot=full&tomatoes=true&apikey=trilogy";
+}
 
 //   Function to figure out what user entered
 
 var userSearch = function(typeOfSearch, whatSearched) {
     switch (typeOfSearch) {
         case "concert-this":
-        getMyBands(whatSearched);
+        bandSearch(whatSearched);
         break;
 
         case "spotify-this-song":
