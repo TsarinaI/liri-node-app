@@ -86,6 +86,20 @@ var movieSearch = function(nameOfMovie) {
     nameOfMovie = "Mr Nobody";
   }
   var queryMovie = "http://www.omdbapi.com/?t=" + nameOfMovie + "&y=&plot=full&tomatoes=true&apikey=trilogy";
+
+  axios.get(queryMovie)
+  .then(function(response) {
+      console.log("Title: " + response.data.Title);
+      console.log("---------------------")
+      console.log("Year of release: " + response.data.Year);
+      console.log("Rated: " + response.data.Rated);
+      console.log("IMDB Rating: " + response.data.imdbRating);
+      console.log("Country: " + response.data.Country);
+      console.log("Language: " + response.data.Language);
+      console.log("Plot: " + response.data.Plot);
+      console.log("Actors: " + response.data.Actors);
+      console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+  });
 }
 
 //   Function to figure out what user entered
