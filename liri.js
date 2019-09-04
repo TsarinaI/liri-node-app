@@ -103,6 +103,22 @@ var movieSearch = function(nameOfMovie) {
   });
 };
 
+var randomSearch = function() {
+  // Idk what "utf8" is supposed to do - LOOK UP
+  fs.readFile("random.txt", "utf8", function(error, data) {
+    if (error) {
+      console.log("Error: " + error)
+    };
+
+    console.log(data);
+
+    var dataArray = data.split(",");
+    if (dataArray.length === 2) {userSearch(dataArray[0], dataArray[1])}
+    else if (dataArray.length === 1) {
+      userSearch(dataArray[0]);
+    }
+  })
+}
 //   Function to figure out what user entered
 
 var userSearch = function(typeOfSearch, whatSearched) {
@@ -119,9 +135,9 @@ var userSearch = function(typeOfSearch, whatSearched) {
         movieSearch(whatSearched);
         break;
 
-        // case "do-what-it-says":
-        // doWhatItSays();
-        // break;
+        case "do-what-it-says":
+        randomSearch();
+        break;
 
         default: console.log("LIRI is not sure what you mean. Please try a different command.")
 
