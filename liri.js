@@ -20,12 +20,12 @@ var grabArtist = function(artist) {
   };
 
 // Function for running a Spotify search
-var spotifySearch = function(nameOfSong) {
-    if (nameOfSong === undefined) {
-      nameOfSong = "The sign";
+var spotifySearch = function(songName) {
+    if (songName === undefined) {
+      songName = "What's my age again";
     }
   // The Spotify API search - if there are results, the first one displays with the artist, name of song, preview, and album
-    spotify.search({type: "track", query: nameOfSong},
+    spotify.search({type: "track", query: songName},
       function(err, data) {
         if (err) {
           console.log("Error: " + err);
