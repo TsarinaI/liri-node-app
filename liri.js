@@ -87,6 +87,7 @@ var movieSearch = function(nameOfMovie) {
   if (nameOfMovie === undefined) {
     nameOfMovie = "Mr Nobody";
   }
+
   var queryMovie = "http://www.omdbapi.com/?t=" + nameOfMovie + "&y=&plot=full&tomatoes=true&apikey=trilogy";
 
   axios.get(queryMovie)
