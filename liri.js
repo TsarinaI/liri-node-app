@@ -84,9 +84,9 @@ var spotifySearch = function(songName) {
   };
   
 var movieSearch = function(nameOfMovie) {
-  if (nameOfMovie === undefined) {
-    nameOfMovie = "Mr Nobody";
-  }
+  if (!nameOfMovie) {
+   nameOfMovie = "Mr Nobody";
+ }
 
   var queryMovie = "http://www.omdbapi.com/?t=" + nameOfMovie + "&y=&plot=full&tomatoes=true&apikey=trilogy";
 
